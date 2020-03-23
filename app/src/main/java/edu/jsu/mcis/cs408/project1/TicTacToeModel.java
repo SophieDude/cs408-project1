@@ -38,10 +38,13 @@ public class TicTacToeModel {
 
         /* Create grid (width x width) as a 2D Mark array */
 
-        //
-        // INSERT YOUR CODE HERE
-        //
+        grid = new Mark[size][size];
 
+        for(int row = 0; row < 2; row++) {
+            for(int column = 0; column < 2; column++) {
+                grid[row][column] = Mark.EMPTY;
+            }
+        }
     }
 
     public boolean setMark(TicTacToeSquare square) {
@@ -64,8 +67,19 @@ public class TicTacToeModel {
         //
         // INSERT YOUR CODE HERE
         //
-
-        return false;
+        if (isValidSquare(row,col) && !isSquareMarked(row,col)) {
+            if (isXTurn()) {
+                grid[row][col] = Mark.X;
+            }
+            else {
+                grid[row][col] = Mark.O;
+            }
+            xTurn = !xTurn;
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
 
@@ -73,6 +87,11 @@ public class TicTacToeModel {
 
         // This method should return TRUE if the specified location is within bounds of the grid
 
+        if (row < size && col < size) {
+            if (row >= 0 && col >= 0) {
+                return true;
+            }
+        }
         return false; // this is a stub; delete it later!
 
     }
@@ -81,6 +100,9 @@ public class TicTacToeModel {
 
         // This method should return TRUE if the square at the specified location is already marked
 
+        if(grid[row][col] == Mark.X || grid[row][col] == Mark.O) {
+            return true;
+        }
         return false; // this is a stub; delete it later!
 
     }
@@ -100,8 +122,18 @@ public class TicTacToeModel {
         // should use "isMarkWin()" to see if X or O is the winner, and "isTie()" to see if the game
         // is a TIE.  If neither condition applies, return a default value of NONE.
         //
-
-        return Result.NONE;
+        if(isMarkWin(Mark.X)){
+            return Result.X;
+        }
+        else if(isMarkWin(Mark.O)){
+            return Result.O;
+        }
+        else if(isTie()){
+            return Result.TIE;
+        }
+        else{
+            return Result.NONE;
+        }
 
     }
 
@@ -113,6 +145,59 @@ public class TicTacToeModel {
         // an algorithm which will work for all possible grid sizes!)
         //
 
+        boolean playerwin = true;
+        /* check rows for a winner */
+        for(int i = 0; i < size; i++) {
+            playerwin = true;
+            for(int j = 0; j < size; j++) {
+                if(!grid[i][j].equals(mark)){
+                    playerwin = false;
+                }
+            }
+            if (playerwin) {
+                return true;
+            }
+        }
+
+        playerwin = true;
+        /* check Columns for a winner */
+        for(int i = 0; i < size; i++) {
+            playerwin = true;
+            for(int j = 0; j < size; j++) {
+                if(!grid[j][i].equals(mark)){
+                    playerwin = false;
+                }
+            }
+            if (playerwin) {
+                return true;
+            }
+        }
+
+        /* check diagonals for a winner */
+        // left to Right
+        playerwin = true;
+        for(int i = 0; i < size; i++) {
+            if(!grid[i][i].equals(mark)){
+                playerwin = false;
+
+            }
+        }
+        if (playerwin) {
+            return true;
+        }
+
+        // Right to left
+        playerwin = true;
+        for(int i = 0; i < size; i++) {
+            if(!grid[i][size-i-1].equals(mark)){
+                playerwin = false;
+
+            }
+        }
+        if (playerwin) {
+            return true;
+        }
+
         return false; // this is a stub; delete it later!
 
     }
@@ -122,7 +207,13 @@ public class TicTacToeModel {
         //
         // This method should check the squares of the grid to see if the game is a tie.
         //
-
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                if (isValidSquare(i,j) && !isSquareMarked(i,j)) {
+                    return false;
+                }
+            }
+        }
         return false; // this is a stub; delete it later!
 
     }

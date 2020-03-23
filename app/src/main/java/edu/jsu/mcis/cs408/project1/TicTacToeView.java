@@ -48,6 +48,7 @@ public class TicTacToeView extends AppCompatActivity {
         //
         // INSERT YOUR CODE HERE
         //
+        for
 
     }
 
@@ -116,8 +117,9 @@ public class TicTacToeView extends AppCompatActivity {
         // square as a TicTacToeSquare object, then hand it off to the Controller for processing.
         //
 
-        String name = getViewName(v);
-        Toast.makeText(getBaseContext(), name, Toast.LENGTH_SHORT).show(); // disable this later
+        String squareName = getViewName(v);
+      //  controller.getMarkAsString(squareName);
+        Toast.makeText(getBaseContext(), squareName, Toast.LENGTH_SHORT).show(); // disable this later
 
         //
         // INSERT YOUR CODE HERE
