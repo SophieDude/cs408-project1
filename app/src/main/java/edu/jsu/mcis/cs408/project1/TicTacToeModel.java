@@ -70,9 +70,11 @@ public class TicTacToeModel {
         if (isValidSquare(row,col) && !isSquareMarked(row,col)) {
             if (isXTurn()) {
                 grid[row][col] = Mark.X;
+                firePropertyChange(TicTacToeController.SET_SQUARE_X, this, square);
             }
             else {
                 grid[row][col] = Mark.O;
+                firePropertyChange(TicTacToeController.SET_SQUARE_O, this, square);
             }
             xTurn = !xTurn;
             return true;

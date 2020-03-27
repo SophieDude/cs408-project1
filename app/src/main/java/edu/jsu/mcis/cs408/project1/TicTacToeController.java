@@ -35,10 +35,34 @@ public class TicTacToeController implements PropertyChangeListener {
 
         // setModelProperty("Mark", square);
 
-        //
-        // INSERT YOUR CODE HERE
-        //
 
+        if ( model.getResult() == TicTacToeModel.Result.NONE ) {
+
+            if ( model.setMark(square) && model.isXTurn() ) {
+                setModelProperty(SET_SQUARE_X, square);
+            }
+
+            else if ( model.setMark(square) && !model.isXTurn() ) {
+                setModelProperty(SET_SQUARE_O, square);
+            }
+
+            if ( model.getResult() == TicTacToeModel.Result.TIE )  {
+                view.setResult(TicTacToeModel.Result.TIE.toString());
+            }
+
+            else if ( model.getResult() == TicTacToeModel.Result.X ) {
+                view.setResult(TicTacToeModel.Result.X.toString());
+            }
+
+            else if ( model.getResult() == TicTacToeModel.Result.O ) {
+                view.setResult(TicTacToeModel.Result.O.toString());
+            }
+
+            else {
+                view.setResult("");
+            }
+
+        }
     }
 
     public int getGridSize() {
