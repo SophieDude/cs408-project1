@@ -59,7 +59,7 @@ public class TicTacToeController implements PropertyChangeListener {
             }
 
             else {
-                view.setResult("");
+                view.setResult(null);
             }
 
         }

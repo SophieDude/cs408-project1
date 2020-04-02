@@ -9,7 +9,7 @@ public class TicTacToeModel {
 
     private Mark[][] grid;      /* the game grid */
     private boolean xTurn;      /* is TRUE if X is the current player */
-    private int size;           /* the size (width and height) of the game grid */
+    private int size = DEFAULT_SIZE;           /* the size (width and height) of the game grid */
 
     private TicTacToeController controller;
 
@@ -124,16 +124,16 @@ public class TicTacToeModel {
         // should use "isMarkWin()" to see if X or O is the winner, and "isTie()" to see if the game
         // is a TIE.  If neither condition applies, return a default value of NONE.
         //
-        if(isMarkWin(Mark.X)){
+        if(isMarkWin(Mark.X)) {
             return Result.X;
         }
-        else if(isMarkWin(Mark.O)){
+        else if(isMarkWin(Mark.O)) {
             return Result.O;
         }
-        else if(isTie()){
+        else if(isTie()) {
             return Result.TIE;
         }
-        else{
+        else {
             return Result.NONE;
         }
 
@@ -152,7 +152,7 @@ public class TicTacToeModel {
         for(int i = 0; i < size; i++) {
             playerwin = true;
             for(int j = 0; j < size; j++) {
-                if(!grid[i][j].equals(mark)){
+                if(grid[i][j] != mark){
                     playerwin = false;
                 }
             }
@@ -166,7 +166,7 @@ public class TicTacToeModel {
         for(int i = 0; i < size; i++) {
             playerwin = true;
             for(int j = 0; j < size; j++) {
-                if(!grid[j][i].equals(mark)){
+                if(grid[j][i] != mark){
                     playerwin = false;
                 }
             }
@@ -179,7 +179,7 @@ public class TicTacToeModel {
         // left to Right
         playerwin = true;
         for(int i = 0; i < size; i++) {
-            if(!grid[i][i].equals(mark)){
+            if(grid[i][i] != mark){
                 playerwin = false;
 
             }
@@ -191,7 +191,7 @@ public class TicTacToeModel {
         // Right to left
         playerwin = true;
         for(int i = 0; i < size; i++) {
-            if(!grid[i][size-i-1].equals(mark)){
+            if(grid[i][size-i-1] != mark){
                 playerwin = false;
 
             }

@@ -45,9 +45,9 @@ public class TicTacToeView extends AppCompatActivity {
 
         setResult( getResources().getString(R.string.welcome) );
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                TicTacToeSquare square = new TicTacToeSquare(i,j);
+        for (int row = 0; row < size; ++row) {
+            for (int col = 0; col < size; ++col) {
+                TicTacToeSquare square = new TicTacToeSquare(row,col);
                 int Squareid = getSquareId(square);
                 TextView Squareview = (TextView) findViewById(Squareid);
                 Squareview.setText("");
